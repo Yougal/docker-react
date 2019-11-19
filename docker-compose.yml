@@ -1,0 +1,21 @@
+version: "3.0" 
+services:
+  frontend-app:
+    build: 
+      context: . ## folder from where docker file should be picked
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8080:3000"
+    volumes: 
+      - /usr/local/frontend/node_modules
+      - .:/usr/local/frontend
+  frontend-app-test:
+    build: 
+      context: . ## folder from where docker file should be picked
+      dockerfile: Dockerfile.dev
+    volumes: 
+      - /usr/local/frontend/node_modules
+      - .:/usr/local/frontend
+    command: 
+      - ["npm", "run", "test"]
+
